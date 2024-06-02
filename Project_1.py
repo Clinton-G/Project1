@@ -1,64 +1,53 @@
-# menu = ['0: Quit', '1: Add a Task', '2: View Tasks', '3: Mark a Task as Complete', '4: Delete a Task']
-task_list = ['1: Grocery Store - Incomplete', '2: Dishes - Incomplete', '3: Laundry - Incomplete']
+tasks = [{'name': 'Dishes', 'status': 'Incomplete'}, {'name': 'Laundry', 'status': 'Incomplete'}]
 
-menu = print('''
+while True:
+    print('''
    Menu:
 ----------
 0: Quit
-1: Add a Task:
-2: View Tasks:
-3: Mark a Task as Complete:
+1: Add a Task
+2: View Tasks
+3: Mark a Task as Complete
 4: Delete a Task
 ''')
+    
+    menu_choice = input("Enter choice: ")
 
-menu_choice = input("Enter Input: ")
-
-
-if menu_choice == '1':
-    print(task_list)
-    menu_1 = input('''
-    Enter Task as Shown Above
-''')
-    task_list.append(menu_1)
-    print(menu_1, 'Has Been Added!')
-    menu_2 = input("Would You Like to Add Another Task? ")
-    pass
+    if menu_choice == '0':
+        print('Program Ended, Have a Nice Day!')
+        break
 
 
-if menu_choice == '2':
-    # task_list = print('''
-    #   Task List:
-    #   ----------
-    # 1: Grocery Store - Incompleted
-    # 2: Dishes - Complete
-    # 3: Laundry - Incomplete
-    # 0: Quit
-    # ''')
-    print(task_list)
+    elif menu_choice == '1':
+        new_task = input("Enter Task: ")
+        tasks.append({'name': new_task, 'status': 'Incomplete'})
+        print(new_task, "has been added!")
+
+    elif menu_choice == '2':
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}: {task['name']} - {task['status']}")
 
 
-
-task_choice = input("Enter Input: ")
-
-
-
-
-if menu_choice == '3':
-    input('Which Task Would You Like to Mark as Completed? ')
-
-
-
-
-if menu_choice == '4':
-    task_delete = input('Which Task # Would You Like to Delete? ')
-    if task_delete == '1':
-        task_list.remove('1: Grocery Store - Incomplete')
-    elif task_delete == '2':
-        task_list.remove('2: Dishes - Incomplete')
-    elif task_delete == '3':
-        task_list.remove('3: Laundry - Incomplete')
+    elif menu_choice == '3':
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}: {task['name']} - {task['status']}")
+        task_index = int(input("Enter the index of the task to mark as complete: ")) - 1                # Had to find an awnser for 3, couldnt really figure it out at all
+        if 0 <= task_index < len(tasks):
+            tasks[task_index]['status'] = 'Complete'
+            print("Task marked as complete.")
+        else:
+            print("Invalid task index!")
 
 
-
-if menu_choice == '0':
-    print('Program Ended, Have a Nice Day! ')
+    elif menu_choice == '4':
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}: {task['name']} - {task['status']}")
+        task_index = int(input("Enter index of the task: ")) - 1
+        if 0 <= task_index < len(tasks):
+            del tasks[task_index]
+            print("Task deleted.")
+        else:
+            print("Invalid Input, Try Again")    
+    
+    else:
+        print("Invalid Imput, Try Again")
