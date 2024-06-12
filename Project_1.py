@@ -31,21 +31,21 @@ while True:
     elif menu_choice == '3':
         for i, task in enumerate(tasks, start=1):
             print(f"{i}: {task['name']} - {task['status']}")
-        task_index = int(input("Enter the index of the task to mark as complete: ")) - 1                # Had to find an awnser for 3, couldnt really figure it out at all
+        task_index = int(input("Enter Task You Wish to Mark Completed: ")) - 1
         if 0 <= task_index < len(tasks):
             tasks[task_index]['status'] = 'Complete'
-            print("Task marked as complete.")
+            print("Task Marked as Complete.")
         else:
-            print("Invalid task index!")
+            print("Invalid Input, Try Again")
 
 
     elif menu_choice == '4':
         for i, task in enumerate(tasks, start=1):
             print(f"{i}: {task['name']} - {task['status']}")
-        task_index = int(input("Enter index of the task: ")) - 1
+        task_index = int(input("Enter Task to Delete: ")) - 1
         if 0 <= task_index < len(tasks):
             del tasks[task_index]
-            print("Task deleted.")
+            print("Task Deleted.")
         else:
             print("Invalid Input, Try Again")    
     
